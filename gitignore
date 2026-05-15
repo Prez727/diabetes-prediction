@@ -1,0 +1,13 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+venv/
+.venv/
+
+# Data (large file – do NOT commit to GitHub)
+diabetes_prediction_dataset.csv
+
+# Model file – generated locally, uploaded separately to Streamlit
+# model.pkl
