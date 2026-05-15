@@ -6,6 +6,7 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import pickle
+import gzip
 
 # ── Page config ───────────────────────────────────────────────────
 st.set_page_config(
@@ -17,7 +18,7 @@ st.set_page_config(
 # ── Load model ────────────────────────────────────────────────────
 @st.cache_resource
 def load_model():
-    with open("model.pkl", "rb") as f:
+    with gzip.open("model.pkl", "rb") as f:
         return pickle.load(f)
 
 try:
