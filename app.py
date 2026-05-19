@@ -133,18 +133,6 @@ if st.button("🔍 Predict", use_container_width=True, type="primary"):
     st.metric("Risk Probability", f"{prob*100:.1f}%")
     st.progress(float(prob))
 
-    # Info box
-    with st.expander("ℹ️ About this prediction"):
-        st.markdown(f"""
-| Parameter | Value |
-|-----------|-------|
-| Model | Random Forest (200 trees) |
-| Decision Threshold | {best_thresh:.2f} |
-| Key Features | HbA1c Level, Blood Glucose, BMI, Age |
-
-> **Disclaimer:** This tool is for educational purposes only and does not replace medical advice.
-        """)
-
 # ── Footer ───────────────────────────────────────────────────────
 st.divider()
 st.caption(
