@@ -90,22 +90,44 @@ if st.button("🔍 Predict", use_container_width=True, type="primary"):
 
     input_scaled = scaler.transform(input_data)
     prob         = model.predict_proba(input_scaled)[0][1]
-    prediction   = int(prob >= best_thresh)
+    
+    # Hitung persentase probabilitas
+    prob_percentage = prob * 100
 
     st.subheader("Result")
 
-    if prediction == 1:
+    # Pembagian menjadi 5 kelompok risiko
+    if prob_percentage <= 10.0:
+        st.success(
+            f"### 🟢 Very Low Diabetes Risk\n"
+            f"Predicted probability: **{prob_percentage:.1f}%**\n\n"
+            "Excellent! Your clinical indicators are optimal. Keep maintaining your healthy lifestyle!"
+        )
+    elif prob_percentage <= 30.0:
+        st.info(
+            f"### 🔵 Low Diabetes Risk\n"
+            f"Predicted probability: **{prob_percentage:.1f}%**\n\n"
+            "Your risk is low. Continue keeping a balanced diet and regular physical activity."
+        )
+    elif prob_percentage <= 60.0:
+        st.warning(
+            f"### 🟡 Medium Diabetes Risk\n"
+            f"Predicted probability: **{prob_percentage:.1f}%**\n\n"
+            "Moderate risk detected. Consider monitoring your sugar intake and lifestyle habits."
+        )
+    elif prob_percentage <= 85.0:
         st.error(
-            f"### ⚠️ High Diabetes Risk\n"
-            f"Predicted probability: **{prob*100:.1f}%**\n\n"
-            "Please consult a healthcare professional for further evaluation."
+            f"### 🟠 High Diabetes Risk\n"
+            f"Predicted probability: **{prob_percentage:.1f}%**\n\n"
+            "High risk detected. It is highly recommended to consult a doctor for a medical check-up."
         )
     else:
-        st.success(
-            f"### ✅ Low Diabetes Risk\n"
-            f"Predicted probability: **{prob*100:.1f}%**\n\n"
-            "Keep maintaining a healthy lifestyle!"
+        st.error(
+            f"### 🔴 Very High Diabetes Risk\n"
+            f"Predicted probability: **{prob_percentage:.1f}%**\n\n"
+            "Very high risk detected. Please seek medical evaluation from a healthcare professional immediately."
         )
+
 
     # Probability bar
     st.metric("Risk Probability", f"{prob*100:.1f}%")
