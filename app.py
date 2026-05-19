@@ -1,7 +1,3 @@
-"""
-app.py — Diabetes Prediction Streamlit App
-"""
-
 import streamlit as st
 import pandas as pd
 import numpy as np
@@ -136,6 +132,6 @@ if st.button("🔍 Predict", use_container_width=True, type="primary"):
 # ── Footer ───────────────────────────────────────────────────────
 st.divider()
 st.caption(
-    "Diabetes Prediction App · Built with Streamlit · "
+    
     "Dataset: [Kaggle Diabetes Prediction Dataset](https://www.kaggle.com/datasets/iammustafatz/diabetes-prediction-dataset)"
 )
